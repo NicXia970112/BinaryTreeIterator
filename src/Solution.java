@@ -29,7 +29,7 @@ class Method {
         TreeNode p = root;
         while(!s.isEmpty() || p != null) {
             while (p != null) {
-                System.out.print(p.val + "     ");
+                System.out.print(p.val + "       ");
                 s.push(p);
                 p = p.lChild;
             }
@@ -57,24 +57,24 @@ class Method {
     }
 
     public static void posIterator(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        Stack<TreeNode> temp = new Stack<TreeNode>();
-        TreeNode node = root;
-        while (node != null || stack.size() > 0) {
-            while (node != null) {
-                stack.push(node);
-                temp.push(node);
-                node = node.lChild;
-            }
+        Stack<TreeNode> s = new Stack<>(); //用于遍历
+        Stack<TreeNode> temp = new Stack<>(); //用于记录
+        TreeNode p = root;
 
-            if (stack.size() > 0) {
-                node = stack.pop();
-                node = node.rChild;
+        while ( p != null || !s.isEmpty()) {
+            while (p != null) {
+                s.push(p);
+                temp.push(p);
+                p = p.lChild;
+            }
+            if(!s.isEmpty()) {
+                p = s.pop();
+                p = p.rChild;
             }
         }
-        while (temp.size() > 0) {
-            node = temp.pop();
-            System.out.print(node.val   + "      ");
+        while (!temp.isEmpty()) {
+            p = temp.pop();
+            System.out.print(p.val + "       ");
         }
 
     }
